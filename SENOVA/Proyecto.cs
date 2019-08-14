@@ -7,6 +7,8 @@ namespace SENOVA
     public class Proyecto
     {
         #region Atributos
+        public List<Proyecto> proyectos = new List<Proyecto>();
+
         #endregion
         #region Propiedades
         public string Name { get; set; }
@@ -26,30 +28,61 @@ namespace SENOVA
         {
 
         }
-        public Proyecto( string area, int duracion)
+        public Proyecto(string area, int duracion)
         {
-       
+
             Area = area;
             Duration = duracion;
         }
         #endregion
+
         #region Metodos
+        public void OrdenarDuracion(int o)
+        {
+            List<Proyecto> orden = new List<Proyecto>();
+            foreach (var item in proyectos)
+            {
+
+            }
+        }
+        public void ObtenerMayores()
+        {
+            List<Proyecto> pro20 = new List<Proyecto>();
+            foreach (var item in proyectos)
+            {
+                if (item.Code > 20 && item.Code % 2 == 0)
+                {
+                    pro20.Add(item);
+                }
+            }
+            ImprimirProyecto(pro20);
+        }
         public void IngresarProyecto()
         {
-            Console.WriteLine("Ins¿grese el nombre delproyecto");
-            Name = Console.ReadLine();
-            Console.WriteLine("Ingrese el codigo");
-            Code = double.Parse(Console.ReadLine());
-            Console.WriteLine("Ingrese el Area del proyecto");
-            Area = Console.ReadLine();
-            Console.WriteLine("Ingrese la duracion del proyecto");
-            var Dura = Console.ReadLine();
-            Duration = int.Parse(Dura);
+            var res = "si";
+            while (res == "si")
+            {
+                Proyecto myproyect = new Proyecto();
+                Console.WriteLine("¿Insgrese el nombre del proyecto?");
+                myproyect.Name = Console.ReadLine();
+                Console.WriteLine("¿Ingrese el codigo?");
+                myproyect.Code = double.Parse(Console.ReadLine());
+                Console.WriteLine("¿Ingrese el Area del proyecto?");
+                myproyect.Area = Console.ReadLine();
+                Console.WriteLine("¿Ingrese la duracion del proyecto?");
+                var Dura = Console.ReadLine();
+                myproyect.Duration = int.Parse(Dura);
+                proyectos.Add(myproyect);
+                Console.WriteLine("¿Desea agregar otro proyecto?");
+                res = Console.ReadLine();
+            }
         }
-
-        public void ImprimirProyecto()
+        public void ImprimirProyecto(List<Proyecto> proyecto1)
         {
-            Console.WriteLine($"Name {Name}\n Code {Code}\n Area IP {Area}\n Duration {Duration}");
+            foreach (var item in proyecto1)
+            {
+                Console.WriteLine($"Name of proyect {item.Name}\n Code of proyect {item.Code}\n Area of proyect {item.Area}\n Duration of proyect {item.Duration}");
+            }
         }
         #endregion
     }
